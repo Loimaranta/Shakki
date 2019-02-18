@@ -9,14 +9,19 @@ public class Kuningas extends Pelinappula {
 	}
 
 	@Override
-	public void siirra(String ruutu) {
-		// TODO Auto-generated method stub
-
+	public String toString() {
+		if (getVari() == 'v') {
+			return "[Kv]";
+		} else {
+			return "[Km]";
+		}
+		
 	}
 
 	@Override
-	public String toString() {
-		return "[K]";
+	public boolean voiSiirtaa(String alku, String loppu) {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

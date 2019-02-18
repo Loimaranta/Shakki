@@ -9,14 +9,19 @@ public class Kuningatar extends Pelinappula {
 	}
 
 	@Override
-	public void siirra(String ruutu) {
-		// TODO Auto-generated method stub
-
+	public String toString() {
+		if (getVari() == 'v') {
+			return "[Gv]";
+		} else {
+			return "[Gm]";
+		}
+		
 	}
 
 	@Override
-	public String toString() {
-		return "[G]";
+	public boolean voiSiirtaa(String alku, String loppu) {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

@@ -9,14 +9,19 @@ public class Torni extends Pelinappula {
 	}
 
 	@Override
-	public void siirra(String ruutu) {
-		// TODO Auto-generated method stub
+	public String toString() {
+		if (getVari() == 'v') {
+			return "[Tv]";
+		} else {
+			return "[Tm]";
+		}
 		
 	}
 
 	@Override
-	public String toString() {
-		return "[T]";
+	public boolean voiSiirtaa(String alku, String loppu) {
+		return (kaannaEnsimmainenKoordinaatti(loppu) == kaannaEnsimmainenKoordinaatti(alku) || kaannaToinenKoordinaatti(alku) == kaannaToinenKoordinaatti(loppu));	
+		
 	}
 
 }

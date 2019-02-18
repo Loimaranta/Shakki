@@ -9,14 +9,19 @@ public class Lahetti extends Pelinappula {
 	}
 
 	@Override
-	public void siirra(String ruutu) {
-		// TODO Auto-generated method stub
-
+	public String toString() {
+		if (getVari() == 'v') {
+			return "[Lv]";
+		} else {
+			return "[Lm]";
+		}
+		
 	}
 
 	@Override
-	public String toString() {
-		return "[L]";
+	public boolean voiSiirtaa(String alku, String loppu) {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

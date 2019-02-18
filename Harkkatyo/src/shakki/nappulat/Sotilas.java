@@ -9,14 +9,19 @@ public class Sotilas extends Pelinappula {
 	}
 
 	@Override
-	public void siirra(String ruutu) {
+	public String toString() {
+		if (getVari() == 'v') {
+			return "[Sv]";
+		} else {
+			return "[Sm]";
+		}
 		
-		return;
 	}
 
 	@Override
-	public String toString() {
-		return "[S]";
+	public boolean voiSiirtaa(String alku, String loppu) {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

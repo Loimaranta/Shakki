@@ -6,6 +6,10 @@ public class Lauta {
 	// private HashMap<Pelinappula, String> nappulat = new
 	// HashMap<Pelinappula,String>();
 
+	private char vuoro;
+
+	private boolean peliKaynnissa;
+
 	private Pelinappula[][] lauta = new Pelinappula[8][8];
 
 	private Sotilas s1 = new Sotilas('v');
@@ -85,38 +89,75 @@ public class Lauta {
 
 		lauta[0][4] = k1;
 		lauta[7][4] = k2;
+
+		this.peliKaynnissa = true;
+		this.vuoro = 'v';
 	}
 
 	public void lataaPeli() {
-
+		// TODO keksi miten peli ladataan SQLite tietokannasta
+		this.peliKaynnissa = true;
 	}
 
-	public void siirraNappula(String alku, String loppu) {
-		int alkujono = kaannaKoordinaatti(alku);
-		int loppujono = kaannaKoordinaatti(loppu);
-		int alkurivi = (Integer.parseInt(alku.substring(1))) - 1;
-		int loppurivi = (Integer.parseInt(loppu.substring(1))) - 1;
+	public void tallennaPeli() {
+		// TODO keksi miten peli tallennetaan SQLite tietokantaan
+	}
 
-		Pelinappula siirrettava = lauta[alkujono][alkurivi];
-		lauta[alkujono][alkurivi] = null;
-		lauta[loppujono][loppurivi] = siirrettava;
+	public void siirraNappula(String syote) throws LaitonSiirtoPoikkeus {
+		String[] syotetaulu = syote.split(" ");
+		String alku = syotetaulu[0];
+		String loppu = syotetaulu[1];
+
+		int alkujono = kaannaEnsimmainenKoordinaatti(alku);
+		int loppujono = kaannaEnsimmainenKoordinaatti(loppu);
+		int alkurivi = kaannaToinenKoordinaatti(alku);
+		int loppurivi = kaannaToinenKoordinaatti(loppu);
+
+		if (lauta[alkurivi][alkujono] == null)
+			throw new LaitonSiirtoPoikkeus("Tyhjä ruutu!");
+
+		Pelinappula siirrettava = lauta[alkurivi][alkujono];
+
+		if (siirrettava.getVari() != vuoro)
+			throw new LaitonSiirtoPoikkeus("Vaara nappula, nyt on " + vuoro + ":n vuoro");
+
+		if (siirrettava.voiSiirtaa(alku, loppu)) {
+			lauta[alkurivi][alkujono] = null;
+			lauta[loppurivi][loppujono] = siirrettava;
+		} else {
+			throw new LaitonSiirtoPoikkeus("Nappulaa ei voi siirtaa tahan ruutuun");
+		}
+
+		tulostaLauta();
+
+		if (vuoro == 'v') {
+			vuoro = 'm';
+		} else if (vuoro == 'm') {
+			vuoro = 'v';
+		}
 	}
 
 	public void tulostaLauta() {
+		System.out.println("   A   B   C   D   E   F   G   H");
+		int i = 1;
 		for (Pelinappula[] rivi : lauta) {
+			System.out.print(i + " ");
 			for (Pelinappula nappula : rivi) {
 				if (nappula == null) {
-					System.out.print("[ ]");
+					System.out.print("[  ]");
 				} else {
 					System.out.print(nappula);
 				}
 			}
+			//System.out.print(" " + i);
+			i++;
 			System.out.println();
 		}
+		//System.out.print("   A   B   C   D   E   F   G   H");
 		System.out.println();
 	}
 
-	public int kaannaKoordinaatti(String koord) throws IllegalArgumentException {
+	public int kaannaEnsimmainenKoordinaatti(String koord) throws IllegalArgumentException {
 		char eka = koord.charAt(0);
 		int rivi;
 
@@ -150,6 +191,27 @@ public class Lauta {
 		}
 
 		return rivi;
+	}
+
+	public int kaannaToinenKoordinaatti(String koord) throws IllegalArgumentException {
+		int jono = (Integer.parseInt(koord.substring(1))) - 1;
+		if (jono < 0 || jono > 7) {
+			throw new IllegalArgumentException("Huono syote");
+		} else {
+			return jono;
+		}
+	}
+
+	public boolean onkoKaynnissa() {
+		return peliKaynnissa;
+	}
+
+	public boolean tarkistaVari(char v, Pelinappula nappula) throws IllegalArgumentException {
+		if (nappula.getVari() == v) {
+			return true;
+		} else {
+			throw new IllegalArgumentException("Vaara vari");
+		}
 	}
 
 }

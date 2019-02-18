@@ -9,14 +9,19 @@ public class Ratsu extends Pelinappula {
 	}
 
 	@Override
-	public void siirra(String ruutu) {
-		// TODO Auto-generated method stub
+	public String toString() {
+		if (getVari() == 'v') {
+			return "[Rv]";
+		} else {
+			return "[Rm]";
+		}
 		
 	}
 
 	@Override
-	public String toString() {
-		return "[R]";
+	public boolean voiSiirtaa(String alku, String loppu) {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }
