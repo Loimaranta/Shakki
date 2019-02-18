@@ -16,6 +16,9 @@ public abstract class Pelinappula {
 		return vari;
 	}
 	
+	/**
+	 * pakottaa nappulat kirjoittamaan oman toString() metodin
+	 */
 	public abstract String toString();
 
 }
