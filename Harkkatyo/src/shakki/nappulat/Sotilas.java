@@ -24,6 +24,6 @@ public class Sotilas extends Pelinappula {
 			return false;
 		}
 		return true;
-	}
+	} //TESTIKOMMENTTI
 
 }
