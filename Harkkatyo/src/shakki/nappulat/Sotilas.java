@@ -23,6 +23,15 @@ public class Sotilas extends Pelinappula {
 		if (kaannaEnsimmainenKoordinaatti(alku) != kaannaEnsimmainenKoordinaatti(loppu)) {
 			return false;
 		}
+		if (kaannaToinenKoordinaatti(alku) > kaannaToinenKoordinaatti(loppu) && getVari() == 'v') {
+			return false;
+		} else if (kaannaToinenKoordinaatti(alku) < kaannaToinenKoordinaatti(loppu) && getVari() == 'm') {
+			return false;
+		}
+		if (Math.abs(kaannaToinenKoordinaatti(alku) - kaannaToinenKoordinaatti(loppu)) > 1) {
+			return false;
+		}
+		
 		return true;
 	}
 
