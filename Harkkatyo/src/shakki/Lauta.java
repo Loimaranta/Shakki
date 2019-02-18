@@ -93,6 +93,17 @@ public class Lauta {
 
 	}
 
+	public void siirraNappula(String alku, String loppu) {
+		int alkujono = kaannaKoordinaatti(alku);
+		int loppujono = kaannaKoordinaatti(loppu);
+		int alkurivi = (Integer.parseInt(alku.substring(1))) - 1;
+		int loppurivi = (Integer.parseInt(loppu.substring(1))) - 1;
+		
+		Pelinappula siirrettava = lauta[alkujono][alkurivi];
+		lauta[alkujono][alkurivi] = null;
+		lauta[loppujono][loppurivi] = siirrettava;
+	}
+
 	public void tulostaLauta() {
 		for (Pelinappula[] rivi : lauta) {
 			for (Pelinappula nappula : rivi) {
@@ -104,6 +115,7 @@ public class Lauta {
 			}
 			System.out.println();
 		}
+		System.out.println();
 	}
 
 	public int kaannaKoordinaatti(String koord) throws IllegalArgumentException {

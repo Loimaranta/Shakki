@@ -27,6 +27,10 @@ public class Testi {
 		
 		lauta.tulostaLauta();
 		
+		lauta.siirraNappula("A1", "C3");
+		
+		lauta.tulostaLauta();
+		
 	}
 	
 	

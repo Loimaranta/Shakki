@@ -10,6 +10,7 @@ public class Sotilas extends Pelinappula {
 
 	@Override
 	public void siirra(String ruutu) {
+		
 		return;
 	}
 
