@@ -14,4 +14,9 @@ public class Kuningatar extends Pelinappula {
 
 	}
 
+	@Override
+	public String toString() {
+		return "[G]";
+	}
+
 }

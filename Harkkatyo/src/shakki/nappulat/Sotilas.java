@@ -13,4 +13,9 @@ public class Sotilas extends Pelinappula {
 		return;
 	}
 
+	@Override
+	public String toString() {
+		return "[S]";
+	}
+
 }

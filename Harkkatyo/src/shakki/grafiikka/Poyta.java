@@ -17,6 +17,8 @@ public class Poyta extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	// TODO hanki kuvat nappuloille
+	
 	private Image sotilasV;
 	private Image sotilasM;
 	private Image torniV;
@@ -51,6 +53,7 @@ public class Poyta extends JFrame {
 
 	}
 
+		// TODO lataa parempi kuva, rakenna skaalaava koodi
 }
 
 class PiirtoAlusta extends JPanel {
@@ -65,9 +68,6 @@ class PiirtoAlusta extends JPanel {
 	private int y = 1;
 	private int x = 1;
 
-	private int xx = 0;
-	private int yy = 0;
-
 	public PiirtoAlusta(Image img) {
 
 		this.img = img;
@@ -81,22 +81,6 @@ class PiirtoAlusta extends JPanel {
 	public void paintComponent(Graphics g) {
 
 		super.paintComponent(g);
-
-		if (x >= this.getWidth() - img.getWidth(this) || x <= 0) {
-
-			xx = -xx;
-
-		}
-
-		if (y >= this.getHeight() - img.getHeight(this) || y <= 0) {
-
-			yy = -yy;
-
-		}
-
-		x += xx;
-
-		y += yy;
 
 		g.drawImage(img, x, y, this);
 

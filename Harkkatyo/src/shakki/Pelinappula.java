@@ -15,5 +15,7 @@ public abstract class Pelinappula {
 	public char getVari() {
 		return vari;
 	}
+	
+	public abstract String toString();
 
 }

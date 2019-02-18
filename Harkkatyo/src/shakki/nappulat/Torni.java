@@ -14,4 +14,9 @@ public class Torni extends Pelinappula {
 		
 	}
 
+	@Override
+	public String toString() {
+		return "[T]";
+	}
+
 }

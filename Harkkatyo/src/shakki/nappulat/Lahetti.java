@@ -2,9 +2,9 @@ package shakki.nappulat;
 
 import shakki.Pelinappula;
 
-public class Lähetti extends Pelinappula {
+public class Lahetti extends Pelinappula {
 
-	public Lähetti(char vari) {
+	public Lahetti(char vari) {
 		super(vari);
 	}
 
@@ -12,6 +12,11 @@ public class Lähetti extends Pelinappula {
 	public void siirra(String ruutu) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public String toString() {
+		return "[L]";
 	}
 
 }

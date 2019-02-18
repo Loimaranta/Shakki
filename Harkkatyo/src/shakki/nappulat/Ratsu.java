@@ -14,4 +14,9 @@ public class Ratsu extends Pelinappula {
 		
 	}
 
+	@Override
+	public String toString() {
+		return "[R]";
+	}
+
 }

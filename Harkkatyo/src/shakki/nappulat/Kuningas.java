@@ -14,4 +14,9 @@ public class Kuningas extends Pelinappula {
 
 	}
 
+	@Override
+	public String toString() {
+		return "[K]";
+	}
+
 }
