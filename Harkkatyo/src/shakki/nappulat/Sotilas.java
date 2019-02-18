@@ -20,7 +20,9 @@ public class Sotilas extends Pelinappula {
 
 	@Override
 	public boolean voiSiirtaa(String alku, String loppu) {
-		// TODO Auto-generated method stub
+		if (kaannaEnsimmainenKoordinaatti(alku) != kaannaEnsimmainenKoordinaatti(loppu)) {
+			return false;
+		}
 		return true;
 	}
 
