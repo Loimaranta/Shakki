@@ -1,8 +1,8 @@
 package shakki;
 
-import javax.swing.JFrame;
+//import javax.swing.JFrame;
 
-import shakki.grafiikka.Poyta;
+//import shakki.grafiikka.Poyta;
 
 
 public class Testi {
@@ -27,7 +27,7 @@ public class Testi {
 		
 		lauta.tulostaLauta();
 		
-		lauta.siirraNappula("A1", "C3");
+		lauta.siirraNappula("A1", "C1");
 		
 		lauta.tulostaLauta();
 		

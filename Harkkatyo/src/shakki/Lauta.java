@@ -1,7 +1,5 @@
 package shakki;
 
-import java.util.HashMap;
-
 import shakki.nappulat.*;
 
 public class Lauta {
@@ -98,7 +96,7 @@ public class Lauta {
 		int loppujono = kaannaKoordinaatti(loppu);
 		int alkurivi = (Integer.parseInt(alku.substring(1))) - 1;
 		int loppurivi = (Integer.parseInt(loppu.substring(1))) - 1;
-		
+
 		Pelinappula siirrettava = lauta[alkujono][alkurivi];
 		lauta[alkujono][alkurivi] = null;
 		lauta[loppujono][loppurivi] = siirrettava;
