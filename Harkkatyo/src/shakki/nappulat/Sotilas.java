@@ -4,6 +4,8 @@ import shakki.Pelinappula;
 
 public class Sotilas extends Pelinappula {
 
+	private boolean liikutettu = false;
+
 	public Sotilas(char vari) {
 		super(vari);
 	}
@@ -15,7 +17,7 @@ public class Sotilas extends Pelinappula {
 		} else {
 			return "[Sm]";
 		}
-		
+
 	}
 
 	@Override
@@ -28,10 +30,13 @@ public class Sotilas extends Pelinappula {
 		} else if (kaannaToinenKoordinaatti(alku) < kaannaToinenKoordinaatti(loppu) && getVari() == 'm') {
 			return false;
 		}
-		if (Math.abs(kaannaToinenKoordinaatti(alku) - kaannaToinenKoordinaatti(loppu)) > 1) {
+		if (!(liikutettu) && Math.abs(kaannaToinenKoordinaatti(alku) - kaannaToinenKoordinaatti(loppu)) > 2) {
+			return false;
+		} else if (Math.abs(kaannaToinenKoordinaatti(alku) - kaannaToinenKoordinaatti(loppu)) > 1) {
 			return false;
 		}
-		
+		//TODO lisää vielä syömistä koskeva diagonaalinen liike
+
 		return true;
 	}
 

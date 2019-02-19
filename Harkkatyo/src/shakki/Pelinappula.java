@@ -9,7 +9,9 @@ public abstract class Pelinappula {
 	}
 
 	/**
-	 * Tarkistaa, voiko nappulatyyppia siirtaa kutsutulla tavalla. Laudan siirra() metodi kutsuu siirrettaessa.
+	 * Tarkistaa, voiko nappulatyyppia siirtaa kutsutulla tavalla. Laudan siirra()
+	 * metodi kutsuu siirrettaessa.
+	 * 
 	 * @param alku
 	 * @param loppu
 	 * @return

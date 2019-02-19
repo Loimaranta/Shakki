@@ -15,7 +15,7 @@ public class Ratsu extends Pelinappula {
 		} else {
 			return "[Rm]";
 		}
-		
+
 	}
 
 	@Override

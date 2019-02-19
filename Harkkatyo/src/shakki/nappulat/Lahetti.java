@@ -15,12 +15,12 @@ public class Lahetti extends Pelinappula {
 		} else {
 			return "[Lm]";
 		}
-		
+
 	}
 
 	@Override
 	public boolean voiSiirtaa(String alku, String loppu) {
-		// TODO Auto-generated method stub
+
 		return true;
 	}
 

@@ -15,7 +15,7 @@ public class Kuningas extends Pelinappula {
 		} else {
 			return "[Km]";
 		}
-		
+
 	}
 
 	@Override

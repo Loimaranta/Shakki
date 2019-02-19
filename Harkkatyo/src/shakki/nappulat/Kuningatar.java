@@ -15,7 +15,7 @@ public class Kuningatar extends Pelinappula {
 		} else {
 			return "[Gm]";
 		}
-		
+
 	}
 
 	@Override

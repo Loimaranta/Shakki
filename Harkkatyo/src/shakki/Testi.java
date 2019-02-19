@@ -30,7 +30,7 @@ public class Testi {
 		lauta.tulostaLauta();
 
 		while (lauta.onkoKaynnissa()) {
-			
+
 			String syote = (String) scan.nextLine();
 			try {
 				lauta.siirraNappula(syote);
