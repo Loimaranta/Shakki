@@ -121,6 +121,14 @@ public class Lauta {
 		if (siirrettava.getVari() != vuoro)
 			throw new LaitonSiirtoPoikkeus("Vaara nappula, nyt on " + vuoro + ":n vuoro");
 
+	if (lauta[loppurivi][loppujono] != null) {
+			if ((lauta[loppurivi][loppujono]).getVari() == vuoro) {
+				throw new LaitonSiirtoPoikkeus("Et voi syödä omaa nappulaa!");
+			}
+		}
+
+		// Tarkistukset loppuvat, siirtää nappulan
+
 		if (siirrettava.voiSiirtaa(alku, loppu)) {
 			lauta[alkurivi][alkujono] = null;
 			lauta[loppurivi][loppujono] = siirrettava;
@@ -149,11 +157,11 @@ public class Lauta {
 					System.out.print(nappula);
 				}
 			}
-			//System.out.print(" " + i);
+			// System.out.print(" " + i);
 			i++;
 			System.out.println();
 		}
-		//System.out.print("   A   B   C   D   E   F   G   H");
+		// System.out.print(" A B C D E F G H");
 		System.out.println();
 	}
 
