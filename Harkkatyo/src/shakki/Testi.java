@@ -38,6 +38,8 @@ public class Testi {
 				e.tulostaVirhe();
 			}
 		}
+		
+		System.out.println("Peli p‰‰ttyi");
 
 	}
 

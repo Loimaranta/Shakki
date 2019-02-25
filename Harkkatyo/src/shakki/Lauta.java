@@ -130,6 +130,9 @@ public class Lauta {
 		// Tarkistukset loppuvat, siirt‰‰ nappulan
 
 		if (siirrettava.voiSiirtaa(alku, loppu)) {
+			if(lauta[loppurivi][loppujono] instanceof Kuningas) {
+				peliKaynnissa = false;
+			}
 			lauta[alkurivi][alkujono] = null;
 			lauta[loppurivi][loppujono] = siirrettava;
 		} else {
