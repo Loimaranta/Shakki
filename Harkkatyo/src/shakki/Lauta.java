@@ -114,12 +114,12 @@ public class Lauta {
 		int loppurivi = kaannaToinenKoordinaatti(loppu);
 
 		if (lauta[alkurivi][alkujono] == null)
-			throw new LaitonSiirtoPoikkeus("Tyhj‰ ruutu!");
+			throw new LaitonSiirtoPoikkeus("Valitsit tyhj‰n ruudun!");
 
 		Pelinappula siirrettava = lauta[alkurivi][alkujono];
 
 		if (siirrettava.getVari() != vuoro)
-			throw new LaitonSiirtoPoikkeus("Vaara nappula, nyt on " + vuoro + ":n vuoro");
+			throw new LaitonSiirtoPoikkeus("V‰‰r‰ nappula, nyt on " + vuoro + ":n vuoro");
 
 	if (lauta[loppurivi][loppujono] != null) {
 			if ((lauta[loppurivi][loppujono]).getVari() == vuoro) {
@@ -133,7 +133,7 @@ public class Lauta {
 			lauta[alkurivi][alkujono] = null;
 			lauta[loppurivi][loppujono] = siirrettava;
 		} else {
-			throw new LaitonSiirtoPoikkeus("Nappulaa ei voi siirtaa tahan ruutuun");
+			throw new LaitonSiirtoPoikkeus("Nappulaa ei voi siirtaa t‰h‰n ruutuun");
 		}
 
 		tulostaLauta();
