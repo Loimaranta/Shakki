@@ -20,8 +20,10 @@ public class Ratsu extends Pelinappula {
 
 	@Override
 	public boolean voiSiirtaa(String alku, String loppu) {
-		// TODO Auto-generated method stub
-		return true;
+		return Math.abs(kaannaEnsimmainenKoordinaatti(alku) - kaannaEnsimmainenKoordinaatti(loppu)) == 2
+				&& Math.abs(kaannaToinenKoordinaatti(alku) - kaannaToinenKoordinaatti(loppu)) == 1
+				|| Math.abs(kaannaEnsimmainenKoordinaatti(alku) - kaannaEnsimmainenKoordinaatti(loppu)) == 1
+						&& Math.abs(kaannaToinenKoordinaatti(alku) - kaannaToinenKoordinaatti(loppu)) == 2;
 	}
 
 }

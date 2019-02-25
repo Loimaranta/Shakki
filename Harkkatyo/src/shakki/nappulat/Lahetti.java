@@ -20,8 +20,8 @@ public class Lahetti extends Pelinappula {
 
 	@Override
 	public boolean voiSiirtaa(String alku, String loppu) {
-
-		return true;
+		return (Math.abs(kaannaEnsimmainenKoordinaatti(alku) - kaannaEnsimmainenKoordinaatti(loppu)) == Math
+				.abs(kaannaToinenKoordinaatti(alku) - kaannaToinenKoordinaatti(loppu)));
 	}
 
 }
