@@ -37,6 +37,7 @@ public class Sotilas extends Pelinappula {
 			return false;
 		}
 		//TODO lisää vielä syömistä koskeva diagonaalinen liike
+		//TODO estä suoraan liikkumalla syöminen
 		siirtojaljella = false;
 		return true;
 	}

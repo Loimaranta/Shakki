@@ -25,6 +25,8 @@ public class Kuningas extends Pelinappula {
 				|| kaannaEnsimmainenKoordinaatti(loppu) == kaannaEnsimmainenKoordinaatti(alku)
 				|| kaannaToinenKoordinaatti(alku) == kaannaToinenKoordinaatti(loppu)) // Rajoittaa liikesuunnat
 				&& Math.abs(kaannaEnsimmainenKoordinaatti(alku) - kaannaEnsimmainenKoordinaatti(loppu)) == 1
-				|| Math.abs(kaannaToinenKoordinaatti(alku) - kaannaToinenKoordinaatti(loppu)) == 1; //Rajoittaa liikkeen yhteen ruutuun
+				|| Math.abs(kaannaToinenKoordinaatti(alku) - kaannaToinenKoordinaatti(loppu)) == 1; // Rajoittaa
+																									// liikkeen yhteen
+																									// ruutuun
 	}
 }
