@@ -1,5 +1,8 @@
 package shakki.grafiikka;
 
+import javax.swing.JFrame;
+
+/*
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,6 +13,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+*/
 public class Poyta extends JFrame {
 
 	/**
@@ -17,6 +21,8 @@ public class Poyta extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	
+	/*
 	// TODO hanki kuvat nappuloille
 
 	private Image sotilasV;
@@ -56,11 +62,15 @@ public class Poyta extends JFrame {
 	// TODO lataa parempi kuva, rakenna skaalaava koodi
 }
 
+	*/
+	
+	/*
 class PiirtoAlusta extends JPanel {
 
 	/**
 	 * 
 	 */
+	/*
 	private static final long serialVersionUID = 1L;
 
 	private Image img;
@@ -85,4 +95,7 @@ class PiirtoAlusta extends JPanel {
 		g.drawImage(img, x, y, this);
 
 	}
+	
+
+	*/
 }
