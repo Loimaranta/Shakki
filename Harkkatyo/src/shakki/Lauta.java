@@ -128,39 +128,67 @@ public class Lauta {
 		if (!(siirrettava instanceof Ratsu)) {
 			if (alkujono == loppujono) {
 				if (alkurivi > loppurivi) {
-					for (int a = loppurivi; a < alkurivi - 1; a++) {
+					for (int a = loppurivi; a < alkurivi; a++) {
 						if (lauta[a][alkujono] != null) {
 							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (1)");
 						}
 					}
 				} else if (alkurivi < loppurivi) {
-					for (int a = loppurivi; a > alkurivi + 1; a--) {
+					for (int a = loppurivi; a > alkurivi; a--) {
 						if (lauta[a][alkujono] != null) {
-							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (2)");
+							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (2) ((Alas))");
 						}
 					}
 				}
 			} else if (alkurivi == loppurivi) {
 				if (alkujono > loppujono) {
-					for (int a = loppujono; a < alkujono - 1; a++) {
+					for (int a = loppujono; a < alkujono; a++) {
 						if (lauta[alkurivi][a] != null) {
 							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (3)");
 						}
 					}
 				} else if (alkujono < loppujono) {
-					for (int a = loppujono; a > alkujono + 1; a--) {
+					for (int a = loppujono; a > alkujono; a--) {
 						if (lauta[alkurivi][a] != null) {
 							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (4)");
 						}
 					}
 				}
 			} else if (Math.abs(alkurivi - loppurivi) == Math.abs(alkujono - loppujono)) {
-				for (int a = alkurivi; a < loppurivi - 1; a++) {
-					int b = a;
-					if (lauta[a][b] != null) {
-						throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (5)");
+				if (alkurivi > loppurivi && alkujono > loppujono) { //TODO Korjaa ehto, ei toimi
+					for (int a = alkurivi; a < loppurivi; a++) {
+						int b = alkujono;
+						if (lauta[a][b] != null) {
+							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (5)");
+						}
+						b++;
+						System.out.println(a + b);
+					}
+				} else if (alkurivi > loppurivi && alkujono < loppujono) {
+					for (int a = alkurivi; a > loppurivi; a--) {
+						int b = a;
+						if (lauta[a][b] != null) {
+							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (6) ((Oikea-ylös))");
+						}
+					}
+				} else if (alkurivi < loppurivi && alkujono < loppujono) { //TODO Korjaa ehto, ei toimi
+					for (int a = alkurivi; a > loppurivi; a++) {
+						int b = alkujono;
+						if (lauta[a][b] != null) {
+							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (7)");
+						}
+						b++;
+						
+					}
+				} else if (alkurivi < loppurivi && alkujono > loppujono) {
+					for (int a = alkurivi; a < loppurivi; a++) {
+						int b = a;
+						if (lauta[a][b] != null) {
+							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (8) ((Vasen-alas))");
+						}
 					}
 				}
+
 			}
 		}
 
