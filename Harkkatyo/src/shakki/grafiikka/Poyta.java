@@ -18,7 +18,7 @@ public class Poyta extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	// TODO hanki kuvat nappuloille
-	
+
 	private Image sotilasV;
 	private Image sotilasM;
 	private Image torniV;
@@ -53,7 +53,7 @@ public class Poyta extends JFrame {
 
 	}
 
-		// TODO lataa parempi kuva, rakenna skaalaava koodi
+	// TODO lataa parempi kuva, rakenna skaalaava koodi
 }
 
 class PiirtoAlusta extends JPanel {

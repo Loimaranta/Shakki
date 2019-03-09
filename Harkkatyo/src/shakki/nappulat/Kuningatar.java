@@ -15,13 +15,14 @@ public class Kuningatar extends Pelinappula {
 		} else {
 			return "[Gm]";
 		}
-		
 	}
 
 	@Override
 	public boolean voiSiirtaa(String alku, String loppu) {
-		// TODO Auto-generated method stub
-		return true;
+		return (Math.abs(kaannaEnsimmainenKoordinaatti(alku) - kaannaEnsimmainenKoordinaatti(loppu)) == Math
+				.abs(kaannaToinenKoordinaatti(alku) - kaannaToinenKoordinaatti(loppu))
+				|| kaannaEnsimmainenKoordinaatti(loppu) == kaannaEnsimmainenKoordinaatti(alku)
+				|| kaannaToinenKoordinaatti(alku) == kaannaToinenKoordinaatti(loppu));
 	}
 
 }

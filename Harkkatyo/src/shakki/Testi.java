@@ -30,7 +30,7 @@ public class Testi {
 		lauta.tulostaLauta();
 
 		while (lauta.onkoKaynnissa()) {
-			
+
 			String syote = (String) scan.nextLine();
 			try {
 				lauta.siirraNappula(syote);
@@ -38,6 +38,10 @@ public class Testi {
 				e.tulostaVirhe();
 			}
 		}
+
+		scan.close();
+
+		System.out.println("Peli p‰‰ttyi");
 
 	}
 

@@ -3,8 +3,6 @@ package shakki;
 import shakki.nappulat.*;
 
 public class Lauta {
-	// private HashMap<Pelinappula, String> nappulat = new
-	// HashMap<Pelinappula,String>();
 
 	private char vuoro;
 
@@ -114,18 +112,31 @@ public class Lauta {
 		int loppurivi = kaannaToinenKoordinaatti(loppu);
 
 		if (lauta[alkurivi][alkujono] == null)
-			throw new LaitonSiirtoPoikkeus("Tyhjä ruutu!");
+			throw new LaitonSiirtoPoikkeus("Valitsit tyhjän ruudun!");
 
 		Pelinappula siirrettava = lauta[alkurivi][alkujono];
 
 		if (siirrettava.getVari() != vuoro)
-			throw new LaitonSiirtoPoikkeus("Vaara nappula, nyt on " + vuoro + ":n vuoro");
+			throw new LaitonSiirtoPoikkeus("Väärä nappula, nyt on " + vuoro + ":n vuoro");
+
+		if (lauta[loppurivi][loppujono] != null) {
+			if ((lauta[loppurivi][loppujono]).getVari() == vuoro) {
+				throw new LaitonSiirtoPoikkeus("Et voi syödä omaa nappulaa!");
+			}
+		}
+
+		// TODO tarkista reitti, alkukoordinaatti ja loppukoordinaatin väliset ruudut
+
+		// Tarkistukset loppuvat, siirtää nappulan
 
 		if (siirrettava.voiSiirtaa(alku, loppu)) {
+			if (lauta[loppurivi][loppujono] instanceof Kuningas) {
+				peliKaynnissa = false;
+			}
 			lauta[alkurivi][alkujono] = null;
 			lauta[loppurivi][loppujono] = siirrettava;
 		} else {
-			throw new LaitonSiirtoPoikkeus("Nappulaa ei voi siirtaa tahan ruutuun");
+			throw new LaitonSiirtoPoikkeus("Nappulaa ei voi siirtaa tähän ruutuun");
 		}
 
 		tulostaLauta();
@@ -149,11 +160,11 @@ public class Lauta {
 					System.out.print(nappula);
 				}
 			}
-			//System.out.print(" " + i);
+			// System.out.print(" " + i);
 			i++;
 			System.out.println();
 		}
-		//System.out.print("   A   B   C   D   E   F   G   H");
+		// System.out.print(" A B C D E F G H");
 		System.out.println();
 	}
 

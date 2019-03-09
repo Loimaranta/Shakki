@@ -15,13 +15,14 @@ public class Torni extends Pelinappula {
 		} else {
 			return "[Tm]";
 		}
-		
+
 	}
 
 	@Override
 	public boolean voiSiirtaa(String alku, String loppu) {
-		return (kaannaEnsimmainenKoordinaatti(loppu) == kaannaEnsimmainenKoordinaatti(alku) || kaannaToinenKoordinaatti(alku) == kaannaToinenKoordinaatti(loppu));	
-		
+		return (kaannaEnsimmainenKoordinaatti(loppu) == kaannaEnsimmainenKoordinaatti(alku)
+				|| kaannaToinenKoordinaatti(alku) == kaannaToinenKoordinaatti(loppu));
+
 	}
 
 }
