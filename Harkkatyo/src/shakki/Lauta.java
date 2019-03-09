@@ -125,7 +125,44 @@ public class Lauta {
 			}
 		}
 
-		// TODO tarkista reitti, alkukoordinaatti ja loppukoordinaatin väliset ruudut
+		if (!(siirrettava instanceof Ratsu)) {
+			if (alkujono == loppujono) {
+				if (alkurivi > loppurivi) {
+					for (int a = loppurivi; a < alkurivi - 1; a++) {
+						if (lauta[a][alkujono] != null) {
+							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (1)");
+						}
+					}
+				} else if (alkurivi < loppurivi) {
+					for (int a = loppurivi; a > alkurivi + 1; a--) {
+						if (lauta[a][alkujono] != null) {
+							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (2)");
+						}
+					}
+				}
+			} else if (alkurivi == loppurivi) {
+				if (alkujono > loppujono) {
+					for (int a = loppujono; a < alkujono - 1; a++) {
+						if (lauta[alkurivi][a] != null) {
+							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (3)");
+						}
+					}
+				} else if (alkujono < loppujono) {
+					for (int a = loppujono; a > alkujono + 1; a--) {
+						if (lauta[alkurivi][a] != null) {
+							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (4)");
+						}
+					}
+				}
+			} else if (Math.abs(alkurivi - loppurivi) == Math.abs(alkujono - loppujono)) {
+				for (int a = alkurivi; a < loppurivi - 1; a++) {
+					int b = a;
+					if (lauta[a][b] != null) {
+						throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (5)");
+					}
+				}
+			}
+		}
 
 		// Tarkistukset loppuvat, siirtää nappulan
 
@@ -168,7 +205,7 @@ public class Lauta {
 		System.out.println();
 	}
 
-	public int kaannaEnsimmainenKoordinaatti(String koord) throws IllegalArgumentException {
+	public int kaannaEnsimmainenKoordinaatti(String koord) throws LaitonSiirtoPoikkeus {
 		char eka = koord.charAt(0);
 		int rivi;
 
@@ -198,16 +235,16 @@ public class Lauta {
 			rivi = 7;
 			break;
 		default:
-			throw new IllegalArgumentException("Huono syote");
+			throw new LaitonSiirtoPoikkeus("Huono syote");
 		}
 
 		return rivi;
 	}
 
-	public int kaannaToinenKoordinaatti(String koord) throws IllegalArgumentException {
+	public int kaannaToinenKoordinaatti(String koord) throws LaitonSiirtoPoikkeus {
 		int jono = (Integer.parseInt(koord.substring(1))) - 1;
 		if (jono < 0 || jono > 7) {
-			throw new IllegalArgumentException("Huono syote");
+			throw new LaitonSiirtoPoikkeus("Huono syote");
 		} else {
 			return jono;
 		}
@@ -217,11 +254,11 @@ public class Lauta {
 		return peliKaynnissa;
 	}
 
-	public boolean tarkistaVari(char v, Pelinappula nappula) throws IllegalArgumentException {
+	public boolean tarkistaVari(char v, Pelinappula nappula) throws LaitonSiirtoPoikkeus {
 		if (nappula.getVari() == v) {
 			return true;
 		} else {
-			throw new IllegalArgumentException("Vaara vari");
+			throw new LaitonSiirtoPoikkeus("Vaara vari");
 		}
 	}
 
