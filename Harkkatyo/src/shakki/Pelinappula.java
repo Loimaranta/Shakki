@@ -1,5 +1,8 @@
 package shakki;
 
+import shakki.LaitonSiirtoPoikkeus;
+import shakki.Pelinappula;
+
 public abstract class Pelinappula {
 
 	private char vari;
@@ -27,7 +30,7 @@ public abstract class Pelinappula {
 	 */
 	public abstract String toString();
 
-	public int kaannaEnsimmainenKoordinaatti(String koord) throws IllegalArgumentException {
+	public int kaannaEnsimmainenKoordinaatti(String koord) throws LaitonSiirtoPoikkeus {
 		char eka = koord.charAt(0);
 		int rivi;
 
@@ -57,16 +60,16 @@ public abstract class Pelinappula {
 			rivi = 7;
 			break;
 		default:
-			throw new IllegalArgumentException("Huono syote");
+			throw new LaitonSiirtoPoikkeus("Huono syote");
 		}
 
 		return rivi;
 	}
 
-	public int kaannaToinenKoordinaatti(String koord) throws IllegalArgumentException {
+	public int kaannaToinenKoordinaatti(String koord) throws LaitonSiirtoPoikkeus {
 		int jono = (Integer.parseInt(koord.substring(1))) - 1;
 		if (jono < 0 || jono > 7) {
-			throw new IllegalArgumentException("Huono syote");
+			throw new LaitonSiirtoPoikkeus("Huono syote");
 		} else {
 			return jono;
 		}

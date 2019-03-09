@@ -1,5 +1,6 @@
 package shakki.nappulat;
 
+import shakki.LaitonSiirtoPoikkeus;
 import shakki.Pelinappula;
 
 public class Torni extends Pelinappula {
@@ -20,9 +21,12 @@ public class Torni extends Pelinappula {
 
 	@Override
 	public boolean voiSiirtaa(String alku, String loppu) {
+		try {
 		return (kaannaEnsimmainenKoordinaatti(loppu) == kaannaEnsimmainenKoordinaatti(alku)
 				|| kaannaToinenKoordinaatti(alku) == kaannaToinenKoordinaatti(loppu));
-
+		} catch (LaitonSiirtoPoikkeus l) {
+			return false;
+		}
 	}
 
 }

@@ -1,5 +1,6 @@
 package shakki.nappulat;
 
+import shakki.LaitonSiirtoPoikkeus;
 import shakki.Pelinappula;
 
 public class Sotilas extends Pelinappula {
@@ -22,6 +23,7 @@ public class Sotilas extends Pelinappula {
 
 	@Override
 	public boolean voiSiirtaa(String alku, String loppu) {
+		try {
 		if (kaannaEnsimmainenKoordinaatti(alku) != kaannaEnsimmainenKoordinaatti(loppu)) {
 			return false;
 		}
@@ -39,6 +41,11 @@ public class Sotilas extends Pelinappula {
 		//TODO lisää vielä syömistä koskeva diagonaalinen liike
 		//TODO estä suoraan liikkumalla syöminen
 		siirtojaljella = false;
+		return true;
+		} catch (LaitonSiirtoPoikkeus l) {
+			System.out.println(l.getMessage());
+			voiSiirtaa(alku, loppu);
+		}
 		return true;
 	}
 
