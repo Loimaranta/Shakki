@@ -133,7 +133,7 @@ public class Lauta {
 							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (1)");
 						}
 					}
-				} else if (alkurivi < loppurivi) {
+				} else if (alkurivi < loppurivi) { // TODO korjaa yhden ruudun siirto
 					for (int a = loppurivi; a > alkurivi; a--) {
 						if (lauta[a][alkujono] != null) {
 							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (2) ((Alas))");
@@ -156,13 +156,10 @@ public class Lauta {
 				}
 			} else if (Math.abs(alkurivi - loppurivi) == Math.abs(alkujono - loppujono)) {
 				if (alkurivi > loppurivi && alkujono > loppujono) { //TODO Korjaa ehto, ei toimi
-					for (int a = alkurivi; a < loppurivi; a++) {
-						int b = alkujono;
-						if (lauta[a][b] != null) {
+					for (int a = loppujono - alkujono; a >= 0; a--) {
+						if (lauta[loppujono - a][loppurivi - a] != null) {
 							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (5)");
 						}
-						b++;
-						System.out.println(a + b);
 					}
 				} else if (alkurivi > loppurivi && alkujono < loppujono) {
 					for (int a = alkurivi; a > loppurivi; a--) {
@@ -171,13 +168,11 @@ public class Lauta {
 							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (6) ((Oikea-ylös))");
 						}
 					}
-				} else if (alkurivi < loppurivi && alkujono < loppujono) { //TODO Korjaa ehto, ei toimi
-					for (int a = alkurivi; a > loppurivi; a++) {
-						int b = alkujono;
-						if (lauta[a][b] != null) {
-							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (7)");
+				} else if (alkurivi < loppurivi && alkujono < loppujono) {
+					for (int a = 0; a < loppurivi - 1; a++) {
+						if (lauta[alkurivi + a][alkujono + a] != null) {
+							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (7) ((Oikea-alas))");
 						}
-						b++;
 						
 					}
 				} else if (alkurivi < loppurivi && alkujono > loppujono) {
