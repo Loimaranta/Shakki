@@ -1,5 +1,6 @@
 package shakki.nappulat;
 
+import shakki.LaitonSiirtoPoikkeus;
 import shakki.Pelinappula;
 
 public class Kuningas extends Pelinappula {
@@ -20,13 +21,18 @@ public class Kuningas extends Pelinappula {
 
 	@Override
 	public boolean voiSiirtaa(String alku, String loppu) {
-		return (Math.abs(kaannaEnsimmainenKoordinaatti(alku) - kaannaEnsimmainenKoordinaatti(loppu)) == Math
-				.abs(kaannaToinenKoordinaatti(alku) - kaannaToinenKoordinaatti(loppu))
-				|| kaannaEnsimmainenKoordinaatti(loppu) == kaannaEnsimmainenKoordinaatti(alku)
-				|| kaannaToinenKoordinaatti(alku) == kaannaToinenKoordinaatti(loppu)) // Rajoittaa liikesuunnat
-				&& Math.abs(kaannaEnsimmainenKoordinaatti(alku) - kaannaEnsimmainenKoordinaatti(loppu)) == 1
-				|| Math.abs(kaannaToinenKoordinaatti(alku) - kaannaToinenKoordinaatti(loppu)) == 1; // Rajoittaa
-																									// liikkeen yhteen
-																									// ruutuun
+		try {
+			return (Math.abs(kaannaEnsimmainenKoordinaatti(alku) - kaannaEnsimmainenKoordinaatti(loppu)) == Math
+					.abs(kaannaToinenKoordinaatti(alku) - kaannaToinenKoordinaatti(loppu))
+					|| kaannaEnsimmainenKoordinaatti(loppu) == kaannaEnsimmainenKoordinaatti(alku)
+					|| kaannaToinenKoordinaatti(alku) == kaannaToinenKoordinaatti(loppu)) // Rajoittaa liikesuunnat
+					&& Math.abs(kaannaEnsimmainenKoordinaatti(alku) - kaannaEnsimmainenKoordinaatti(loppu)) == 1
+					|| Math.abs(kaannaToinenKoordinaatti(alku) - kaannaToinenKoordinaatti(loppu)) == 1; // Rajoittaa
+																										// liikkeen
+																										// yhteen
+																										// ruutuun
+		} catch (LaitonSiirtoPoikkeus l) {
+			return false;
+		}
 	}
 }
