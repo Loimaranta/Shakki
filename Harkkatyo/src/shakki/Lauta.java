@@ -17,8 +17,10 @@ public class Lauta {
 
 	private Pelinappula[][] lauta = new Pelinappula[8][8];
 
+	/**
+	 * Aloittaa uuden pelin oletusasetuksilla
+	 */
 	public void uusiPeli() {
-		// Lisataan nappulat taulukkoon alkuperaisien jarjestyksen mukaan
 		for (int i = 0; i <= 7; i++) {
 			lauta[1][i] = new Sotilas('v');
 		}
@@ -51,6 +53,9 @@ public class Lauta {
 		this.vuoro = 'v';
 	}
 
+	/**
+	 * Lataa pelin tekstitiedostosta
+	 */
 	public void lataaPeli() {
 		File file = new File("shakkiTallennus.txt");
 
@@ -95,21 +100,18 @@ public class Lauta {
 						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Kuningatar('m');
 					else if (latauslista[0].equals("vuoro"))
 						vuoro = latauslista[1].charAt(0);
-					
-							
 				}
-
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			System.out.println("IOException");
 		}
 		this.peliKaynnissa = true;
-
 	}
 
+	/**
+	 * Tallentaa pelin tekstitiedostoon
+	 */
 	public void tallennaPeli() {
-		// TODO keksi miten peli tallennetaan
 		PrintWriter writer = null;
 		try {
 			writer = new PrintWriter("shakkiTallennus.txt", "UTF-8");
@@ -125,9 +127,17 @@ public class Lauta {
 		}
 		writer.println("vuoro " + vuoro + " vari");
 		writer.close();
-
 	}
 
+	/**
+	 * Käy läpi kaikki rajoitteet nappulan siirrosta. kääntää koordinaatit koodille
+	 * luettavaan muotoon, tarkistaa aloituskoordinaatit, tarkistaa onko haluttu
+	 * reitti sallittu kyseiselle nappulalle, ja siirtää nappulan mikäli ehdot
+	 * totetutuvat
+	 * 
+	 * @param syote
+	 * @throws LaitonSiirtoPoikkeus
+	 */
 	public void siirraNappula(String syote) throws LaitonSiirtoPoikkeus {
 		String[] syotetaulu = syote.split(" ");
 		String alku = syotetaulu[0];
@@ -246,6 +256,9 @@ public class Lauta {
 		}
 	}
 
+	/**
+	 * tulostaa pelilaudan suoritushetkisen tilanteen
+	 */
 	public void tulostaLauta() {
 		System.out.println("   A   B   C   D   E   F   G   H");
 		int i = 1;
@@ -266,6 +279,12 @@ public class Lauta {
 		System.out.println();
 	}
 
+	/**
+	 * Kääntää annetun koordinaatin ensimmäisen osan ohjelman käytettävään muotoon
+	 * @param koord
+	 * @return
+	 * @throws LaitonSiirtoPoikkeus
+	 */
 	public int kaannaEnsimmainenKoordinaatti(String koord) throws LaitonSiirtoPoikkeus {
 		char eka = koord.charAt(0);
 		int rivi;
@@ -302,6 +321,12 @@ public class Lauta {
 		return rivi;
 	}
 
+	/**
+	 * Kääntää annetun koordinaatin toisen osan ohjelman käytettävään muotoon
+	 * @param koord
+	 * @return
+	 * @throws LaitonSiirtoPoikkeus
+	 */
 	public int kaannaToinenKoordinaatti(String koord) throws LaitonSiirtoPoikkeus {
 		int jono = (Integer.parseInt(koord.substring(1))) - 1;
 		if (jono < 0 || jono > 7) {
@@ -311,10 +336,21 @@ public class Lauta {
 		}
 	}
 
+	/**
+	 * tarkistaa onko peli yhä käynnissä. Käyetään pelin päällä pitämiseen kunnes kuningas on syöty
+	 * @return
+	 */
 	public boolean onkoKaynnissa() {
 		return peliKaynnissa;
 	}
 
+	/**
+	 * Tarkisaa onko kysytty nappula kysytyn värinen
+	 * @param v
+	 * @param nappula
+	 * @return
+	 * @throws LaitonSiirtoPoikkeus
+	 */
 	public boolean tarkistaVari(char v, Pelinappula nappula) throws LaitonSiirtoPoikkeus {
 		if (nappula.getVari() == v) {
 			return true;
@@ -323,14 +359,19 @@ public class Lauta {
 		}
 	}
 
+	/**
+	 * tarkistaa onko syöte sallitun muotoinen, käytetään syötettä kysyessä
+	 * @param syote
+	 * @return
+	 */
 	public boolean tarkistaSyote(String syote) {
 		return (syote.length() != 5 || syote.isEmpty() || syote.charAt(2) != ' ');
 	}
 
-	public Pelinappula[][] getLauta() {
-		return lauta;
-	}
-
+	/**
+	 * Palauttaa tällä hetkellä vuorossa olevan pelaajan värin
+	 * @return
+	 */
 	public char getVuoro() {
 		return vuoro;
 	}

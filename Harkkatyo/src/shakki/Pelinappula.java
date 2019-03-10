@@ -26,7 +26,7 @@ public abstract class Pelinappula {
 	}
 
 	/**
-	 * pakottaa nappulat kirjoittamaan oman toString() metodin
+	 * Tulostaa nappulan j‰rkev‰mp‰‰n muotoon Laudan TulostaLauta metodille
 	 */
 	public abstract String toString();
 
