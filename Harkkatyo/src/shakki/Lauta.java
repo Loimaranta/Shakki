@@ -135,7 +135,7 @@ public class Lauta {
 							}
 						}
 					}
-				} else if (alkurivi < loppurivi) { 
+				} else if (alkurivi < loppurivi) {
 					for (int a = loppurivi; a > alkurivi; a--) {
 						if (Math.abs(alkurivi - loppurivi) != 1) {
 							if (lauta[a][alkujono] != null) {
@@ -165,7 +165,8 @@ public class Lauta {
 			} else if (Math.abs(alkurivi - loppurivi) == Math.abs(alkujono - loppujono)) {
 				if (alkurivi > loppurivi && alkujono > loppujono) {
 					for (int a = 0; a < loppurivi; a++) {
-						if (lauta[loppurivi - a][loppujono - a] != null) { // TODO korjaa ArrayIndexOutOfBound, antaa -1 kun siirrytään A sarakkeelle
+						if (lauta[loppurivi - a][loppujono - a] != null) { // TODO korjaa ArrayIndexOutOfBound, antaa -1
+																			// kun siirrytään A sarakkeelle
 							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (5)");
 						}
 					}
@@ -297,6 +298,14 @@ public class Lauta {
 		if (syote.length() != 5 || syote.isEmpty() || syote.charAt(2) != ' ') {
 			throw new LaitonSiirtoPoikkeus("Huono syote, anna muotoa Koordinaatti, väli, Koordinaatti");
 		}
+	}
+
+	public Pelinappula[][] getLauta() {
+		return lauta;
+	}
+
+	public char getVuoro() {
+		return vuoro;
 	}
 
 }
