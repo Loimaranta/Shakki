@@ -125,39 +125,48 @@ public class Lauta {
 			}
 		}
 
-		if (!(siirrettava instanceof Ratsu)) {
+		if (!(siirrettava instanceof Ratsu)) { // TODO korjaa yhden ruudun siirto tarkistuksille 1 - 4
 			if (alkujono == loppujono) {
 				if (alkurivi > loppurivi) {
 					for (int a = loppurivi; a < alkurivi; a++) {
-						if (lauta[a][alkujono] != null) {
-							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (1)");
+						if (Math.abs(alkurivi - loppurivi) != 1) {
+							if (lauta[a][alkujono] != null) {
+								throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (1)");
+							}
 						}
 					}
-				} else if (alkurivi < loppurivi) { // TODO korjaa yhden ruudun siirto
+				} else if (alkurivi < loppurivi) {
 					for (int a = loppurivi; a > alkurivi; a--) {
-						if (lauta[a][alkujono] != null) {
-							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (2) ((Alas))");
+						if (Math.abs(alkurivi - loppurivi) != 1) {
+							if (lauta[a][alkujono] != null) {
+								throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (2) ((Alas))");
+							}
 						}
 					}
 				}
 			} else if (alkurivi == loppurivi) {
 				if (alkujono > loppujono) {
 					for (int a = loppujono; a < alkujono; a++) {
-						if (lauta[alkurivi][a] != null) {
-							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (3)");
+						if (Math.abs(alkujono - loppujono) != 1) {
+							if (lauta[alkurivi][a] != null) {
+								throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (3)");
+							}
 						}
 					}
 				} else if (alkujono < loppujono) {
 					for (int a = loppujono; a > alkujono; a--) {
-						if (lauta[alkurivi][a] != null) {
-							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (4)");
+						if (Math.abs(alkujono - loppujono) != 1) {
+							if (lauta[alkurivi][a] != null) {
+								throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (4)");
+							}
 						}
 					}
 				}
 			} else if (Math.abs(alkurivi - loppurivi) == Math.abs(alkujono - loppujono)) {
-				if (alkurivi > loppurivi && alkujono > loppujono) { //TODO Korjaa ehto, ei toimi
-					for (int a = loppujono - alkujono; a >= 0; a--) {
-						if (lauta[loppujono - a][loppurivi - a] != null) {
+				if (alkurivi > loppurivi && alkujono > loppujono) {
+					for (int a = 0; a < loppurivi; a++) {
+						if (lauta[loppurivi - a][loppujono - a] != null) { // TODO korjaa ArrayIndexOutOfBound, antaa -1
+																			// kun siirrytään A sarakkeelle
 							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (5)");
 						}
 					}
@@ -169,14 +178,14 @@ public class Lauta {
 						}
 					}
 				} else if (alkurivi < loppurivi && alkujono < loppujono) {
-					for (int a = 0; a < loppurivi - 1; a++) {
+					for (int a = 0; a < loppurivi; a++) {
 						if (lauta[alkurivi + a][alkujono + a] != null) {
 							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (7) ((Oikea-alas))");
 						}
-						
+
 					}
 				} else if (alkurivi < loppurivi && alkujono > loppujono) {
-					for (int a = alkurivi; a < loppurivi; a++) {
+					for (int a = alkurivi + 1; a < loppurivi; a++) {
 						int b = a;
 						if (lauta[a][b] != null) {
 							throw new LaitonSiirtoPoikkeus("Reitillä on toinen nappula (8) ((Vasen-alas))");
@@ -283,6 +292,20 @@ public class Lauta {
 		} else {
 			throw new LaitonSiirtoPoikkeus("Vaara vari");
 		}
+	}
+
+	public void tarkistaSyote(String syote) throws LaitonSiirtoPoikkeus {
+		if (syote.length() != 5 || syote.isEmpty() || syote.charAt(2) != ' ') {
+			throw new LaitonSiirtoPoikkeus("Huono syote, anna muotoa Koordinaatti, väli, Koordinaatti");
+		}
+	}
+
+	public Pelinappula[][] getLauta() {
+		return lauta;
+	}
+
+	public char getVuoro() {
+		return vuoro;
 	}
 
 }
