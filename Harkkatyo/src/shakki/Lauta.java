@@ -1,5 +1,12 @@
 package shakki;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import shakki.nappulat.*;
 
 public class Lauta {
@@ -10,95 +17,109 @@ public class Lauta {
 
 	private Pelinappula[][] lauta = new Pelinappula[8][8];
 
-	private Sotilas s1 = new Sotilas('v');
-	private Sotilas s2 = new Sotilas('v');
-	private Sotilas s3 = new Sotilas('v');
-	private Sotilas s4 = new Sotilas('v');
-	private Sotilas s5 = new Sotilas('v');
-	private Sotilas s6 = new Sotilas('v');
-	private Sotilas s7 = new Sotilas('v');
-	private Sotilas s8 = new Sotilas('v');
-	private Sotilas s9 = new Sotilas('m');
-	private Sotilas s10 = new Sotilas('m');
-	private Sotilas s11 = new Sotilas('m');
-	private Sotilas s12 = new Sotilas('m');
-	private Sotilas s13 = new Sotilas('m');
-	private Sotilas s14 = new Sotilas('m');
-	private Sotilas s15 = new Sotilas('m');
-	private Sotilas s16 = new Sotilas('m');
-
-	private Torni t1 = new Torni('v');
-	private Torni t2 = new Torni('v');
-	private Torni t3 = new Torni('m');
-	private Torni t4 = new Torni('m');
-
-	private Ratsu r1 = new Ratsu('v');
-	private Ratsu r2 = new Ratsu('v');
-	private Ratsu r3 = new Ratsu('m');
-	private Ratsu r4 = new Ratsu('m');
-
-	private Lahetti l1 = new Lahetti('v');
-	private Lahetti l2 = new Lahetti('v');
-	private Lahetti l3 = new Lahetti('m');
-	private Lahetti l4 = new Lahetti('m');
-
-	private Kuningatar g1 = new Kuningatar('v');
-	private Kuningatar g2 = new Kuningatar('m');
-
-	private Kuningas k1 = new Kuningas('v');
-	private Kuningas k2 = new Kuningas('m');
-
 	public void uusiPeli() {
 		// Lisataan nappulat taulukkoon alkuperaisien jarjestyksen mukaan
-		lauta[1][0] = s1;
-		lauta[1][1] = s2;
-		lauta[1][2] = s3;
-		lauta[1][3] = s4;
-		lauta[1][4] = s5;
-		lauta[1][5] = s6;
-		lauta[1][6] = s7;
-		lauta[1][7] = s8;
-		lauta[6][0] = s9;
-		lauta[6][1] = s10;
-		lauta[6][2] = s11;
-		lauta[6][3] = s12;
-		lauta[6][4] = s13;
-		lauta[6][5] = s14;
-		lauta[6][6] = s15;
-		lauta[6][7] = s16;
+		for (int i = 0; i <= 7; i++) {
+			lauta[1][i] = new Sotilas('v');
+		}
+		for (int i = 0; i <= 7; i++) {
+			lauta[6][i] = new Sotilas('m');
+		}
 
-		lauta[0][0] = t1;
-		lauta[0][7] = t2;
-		lauta[7][0] = t3;
-		lauta[7][7] = t4;
+		lauta[0][0] = new Torni('v');
+		lauta[0][7] = new Torni('v');
+		lauta[7][0] = new Torni('m');
+		lauta[7][7] = new Torni('m');
 
-		lauta[0][1] = r1;
-		lauta[0][6] = r2;
-		lauta[7][1] = r3;
-		lauta[7][6] = r4;
+		lauta[0][1] = new Ratsu('v');
+		lauta[0][6] = new Ratsu('v');
+		lauta[7][1] = new Ratsu('m');
+		lauta[7][6] = new Ratsu('m');
 
-		lauta[0][2] = l1;
-		lauta[0][5] = l2;
-		lauta[7][2] = l3;
-		lauta[7][5] = l4;
+		lauta[0][2] = new Lahetti('v');
+		lauta[0][5] = new Lahetti('v');
+		lauta[7][2] = new Lahetti('m');
+		lauta[7][5] = new Lahetti('m');
 
-		lauta[0][3] = g1;
-		lauta[7][3] = g2;
+		lauta[0][3] = new Kuningatar('v');
+		lauta[7][3] = new Kuningatar('m');
 
-		lauta[0][4] = k1;
-		lauta[7][4] = k2;
+		lauta[0][4] = new Kuningas('v');
+		lauta[7][4] = new Kuningas('m');
 
 		this.peliKaynnissa = true;
 		this.vuoro = 'v';
 	}
 
 	public void lataaPeli() {
-		// TODO keksi miten peli ladataan SQLite tietokannasta
+		File file = new File("shakkiTallennus");
+
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new FileReader(file));
+		} catch (FileNotFoundException e) {
+			System.out.println("Tallennustiedostoa ei löytynyt, aloitetaan uusi peli");
+			uusiPeli();
+		}
+
+		String st;
+		try {
+			if (br != null) {
+				while ((st = br.readLine()) != null) {
+					String[] latauslista = st.split(" ");
+					if (latauslista[2].equals("[Sv]"))
+						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Sotilas('v');
+					if (latauslista[2].equals("[Sm]"))
+						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Sotilas('m');
+					if (latauslista[2].equals("[Tv]"))
+						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Sotilas('v');
+					if (latauslista[2].equals("[Tm]"))
+						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Sotilas('m');
+					if (latauslista[2].equals("[Lv]"))
+						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Sotilas('v');
+					if (latauslista[2].equals("[Lm]"))
+						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Sotilas('m');
+					if (latauslista[2].equals("[Rv]"))
+						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Sotilas('v');
+					if (latauslista[2].equals("[Rm]"))
+						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Sotilas('m');
+					if (latauslista[2].equals("[Kv]"))
+						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Sotilas('v');
+					if (latauslista[2].equals("[Km]"))
+						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Sotilas('m');
+					if (latauslista[2].equals("[Gv]"))
+						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Sotilas('v');
+					if (latauslista[2].equals("[Gm]"))
+						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Sotilas('m');
+
+				}
+
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("IOException");
+		}
 		this.peliKaynnissa = true;
+
 	}
 
 	public void tallennaPeli() {
-		// TODO keksi miten peli tallennetaan SQLite tietokantaan
+		// TODO keksi miten peli tallennetaan
+		PrintWriter writer = null;
+		try {
+			writer = new PrintWriter("shakkiTallennus.txt", "UTF-8");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		for (int i = 0; i <= 7; i++) {
+			for (int j = 0; j <= 7; j++) {
+				writer.println(i + " " + j + " " + lauta[i][j]);
+			}
+		}
+		writer.close();
+
 	}
 
 	public void siirraNappula(String syote) throws LaitonSiirtoPoikkeus {
@@ -195,7 +216,6 @@ public class Lauta {
 							}
 					}
 				}
-
 			}
 		}
 
@@ -297,10 +317,8 @@ public class Lauta {
 		}
 	}
 
-	public void tarkistaSyote(String syote) throws LaitonSiirtoPoikkeus {
-		if (syote.length() != 5 || syote.isEmpty() || syote.charAt(2) != ' ') {
-			throw new LaitonSiirtoPoikkeus("Huono syote, anna muotoa Koordinaatti, väli, Koordinaatti");
-		}
+	public boolean tarkistaSyote(String syote) {
+		return (syote.length() != 5 || syote.isEmpty() || syote.charAt(2) != ' ');
 	}
 
 	public Pelinappula[][] getLauta() {
