@@ -52,7 +52,7 @@ public class Lauta {
 	}
 
 	public void lataaPeli() {
-		File file = new File("shakkiTallennus");
+		File file = new File("shakkiTallennus.txt");
 
 		BufferedReader br = null;
 		try {
@@ -67,31 +67,36 @@ public class Lauta {
 			if (br != null) {
 				while ((st = br.readLine()) != null) {
 					String[] latauslista = st.split(" ");
+					if (latauslista[2] == null)
+						continue;
 					if (latauslista[2].equals("[Sv]"))
 						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Sotilas('v');
-					if (latauslista[2].equals("[Sm]"))
+					else if (latauslista[2].equals("[Sm]"))
 						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Sotilas('m');
-					if (latauslista[2].equals("[Tv]"))
-						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Sotilas('v');
-					if (latauslista[2].equals("[Tm]"))
-						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Sotilas('m');
-					if (latauslista[2].equals("[Lv]"))
-						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Sotilas('v');
-					if (latauslista[2].equals("[Lm]"))
-						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Sotilas('m');
-					if (latauslista[2].equals("[Rv]"))
-						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Sotilas('v');
-					if (latauslista[2].equals("[Rm]"))
-						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Sotilas('m');
-					if (latauslista[2].equals("[Kv]"))
-						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Sotilas('v');
-					if (latauslista[2].equals("[Km]"))
-						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Sotilas('m');
-					if (latauslista[2].equals("[Gv]"))
-						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Sotilas('v');
-					if (latauslista[2].equals("[Gm]"))
-						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Sotilas('m');
-
+					else if (latauslista[2].equals("[Tv]"))
+						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Torni('v');
+					else if (latauslista[2].equals("[Tm]"))
+						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Torni('m');
+					else if (latauslista[2].equals("[Lv]"))
+						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Lahetti('v');
+					else if (latauslista[2].equals("[Lm]"))
+						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Lahetti('m');
+					else if (latauslista[2].equals("[Rv]"))
+						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Ratsu('v');
+					else if (latauslista[2].equals("[Rm]"))
+						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Ratsu('m');
+					else if (latauslista[2].equals("[Kv]"))
+						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Kuningas('v');
+					else if (latauslista[2].equals("[Km]"))
+						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Kuningas('m');
+					else if (latauslista[2].equals("[Gv]"))
+						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Kuningatar('v');
+					else if (latauslista[2].equals("[Gm]"))
+						lauta[Integer.parseInt(latauslista[0])][Integer.parseInt(latauslista[1])] = new Kuningatar('m');
+					else if (latauslista[0].equals("vuoro"))
+						vuoro = latauslista[1].charAt(0);
+					
+							
 				}
 
 			}
@@ -118,6 +123,7 @@ public class Lauta {
 				writer.println(i + " " + j + " " + lauta[i][j]);
 			}
 		}
+		writer.println("vuoro " + vuoro + " vari");
 		writer.close();
 
 	}
