@@ -38,9 +38,9 @@ public class Sotilas extends Pelinappula {
 		if (!(siirtojaljella) && Math.abs(kaannaToinenKoordinaatti(alku) - kaannaToinenKoordinaatti(loppu)) > 1) {
 			return false;
 		}
-		if (kaannaEnsimmainenKoordinaatti(alku) == kaannaEnsimmainenKoordinaatti(loppu) && Math.abs(kaannaToinenKoordinaatti(alku) - kaannaToinenKoordinaatti(loppu)) == 1) {
+		/*if (kaannaEnsimmainenKoordinaatti(alku) == kaannaEnsimmainenKoordinaatti(loppu) && Math.abs(kaannaToinenKoordinaatti(alku) - kaannaToinenKoordinaatti(loppu)) == 1) {
 			return false;
-		}
+		}*/
 		//TODO lisää vielä syömistä koskeva diagonaalinen liike
 		siirtojaljella = false;
 		return true;
